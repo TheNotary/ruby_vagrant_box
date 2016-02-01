@@ -36,6 +36,8 @@ $  vagrant ssh
 
 (vagrant) $  git clone https://github.com/EFForg/action-center-platform.git
 (vagrant) $  cd action-center-platform
+             # Install a different version of ruby if instructed in terminal
+
 (vagrant) $  bundle install
 (vagrant) $  rails s
 ```

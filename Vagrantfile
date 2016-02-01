@@ -13,6 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.box = "hashicorp/precise64"
   config.vm.box = "precise64"
   config.vm.network :forwarded_port, guest: 3000, host: 3000
+  config.ssh.username = "vagrant"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -97,10 +98,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y vim git nodejs postgresql
+    sudo apt-get install -y vim git nodejs postgresql curl
 
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-    \curl -sSL https://get.rvm.io | bash -s stable --ruby
+    \\curl -sSL https://get.rvm.io | bash -s stable --ruby
   SHELL
 
 
