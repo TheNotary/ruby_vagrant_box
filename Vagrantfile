@@ -14,10 +14,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "precise64"
   config.vm.network :forwarded_port, guest: 3000, host: 3000
   config.ssh.username = "vagrant"
-
-  # The url from where the 'config.vm.box' box will be fetched if it
-  # doesn't already exist on the user's system.
   config.vm.box_url = "https://vagrantcloud.com/hashicorp/boxes/precise64/versions/1.0.0/providers/virtualbox.box"
+
+  config.vm.synced_folder "src/", "/home/vagrant/dev"
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -30,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
-  # config.ssh.forward_agent = true
+  config.ssh.forward_agent = true
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -104,8 +103,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     sudo su vagrant
     \\curl -sSL https://get.rvm.io | bash -s stable --ruby
-    sudo su vagrant
-    rvm group add rvm "vagrant"
+
+    mkdir /home/vagrant/dev
+
+    # sudo su vagrant
+    # rvm group add rvm "vagrant"
   SHELL
 
 end
