@@ -18,8 +18,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Default value: false
   config.ssh.forward_agent = true
 
-  config.vm.provider :virtualbox do |vb|
-    vb.customize ["modifyvm", :id, "--memory", "2048"]
+  config.vm.provider :virtualbox do |v|
+
+    # Increase memory allocation to 2GB
+    v.customize ["modifyvm", :id, "--memory", "2048"]
+
+    # Sync time every 5 seconds with host so the ralis code reloader works
+    v.customize ["guestproperty", "set", :id, "--timesync-threshold", 5000]
   end
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
