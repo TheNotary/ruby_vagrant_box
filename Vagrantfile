@@ -5,9 +5,9 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise64"
-  config.vm.box_url = "https://vagrantcloud.com/hashicorp/boxes/precise64/versions/1.0.0/providers/virtualbox.box"
+  config.vm.box = "ubuntu/trusty64"
+  # config.vm.box_url = "https://vagrantcloud.com/hashicorp/boxes/trusty64/versions/1.0.0/providers/virtualbox.box"
+  config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   # Forward the Rails server default port to the host
   config.vm.network "forwarded_port", guest: 3000, host: 3000
   config.ssh.username = "vagrant"
@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y vim git nodejs postgresql curl
+    sudo apt-get install -y vim git nodejs postgresql curl libmysqlclient-dev
 
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
