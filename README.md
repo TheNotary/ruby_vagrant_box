@@ -19,7 +19,7 @@ Now that vagrant is installed, clone this repo into  a directory where you'd lik
   
 
 ```
-$  git clone https://github.com/TheNotary/vagrant_on_rails new_rails_project
+$  git clone https://github.com/TheNotary/ruby_vagrant_box new_rails_project
 ```
 
 Now you get to build the VM on your local system.  
