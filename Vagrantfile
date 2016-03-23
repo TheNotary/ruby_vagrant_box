@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y vim git nodejs postgresql curl libmysqlclient-dev imagemagick
+    sudo apt-get install -y vim git nodejs postgresql curl libmysqlclient-dev imagemagick phantomjs
 
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
