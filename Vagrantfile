@@ -5,8 +5,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "ubuntu/trusty64"
-  # config.vm.box_url = "https://vagrantcloud.com/hashicorp/boxes/trusty64/versions/1.0.0/providers/virtualbox.box"
+  config.vm.box = "ubuntu/trusty64-ruby-box"
   config.vm.box_url = "https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box"
   # Forward the Rails server default port to the host
   config.vm.network "forwarded_port", guest: 3000, host: 3000
@@ -29,7 +28,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell", privileged: false, inline: <<-SHELL
     sudo apt-get update
-    sudo apt-get install -y vim git nodejs postgresql curl libmysqlclient-dev imagemagick phantomjs
+    sudo apt-get install -y vim tmux git nodejs postgresql curl libmysqlclient-dev imagemagick phantomjs
+
+    # For setting up a pair environment
+    # http://collectiveidea.com/blog/archives/2014/02/18/a-simple-pair-programming-setup-with-ssh-and-tmux/
+    #
+    # no, no, use a colaberative editor web app and run ruby against it's contents manually
+    # ...
+    
 
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 
@@ -38,8 +44,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     mkdir /home/vagrant/dev
 
-    # sudo su vagrant
-    # rvm group add rvm "vagrant"
   SHELL
 
 end
